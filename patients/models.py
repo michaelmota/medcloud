@@ -4,7 +4,7 @@ from django.db import models
 
 from .constants import sexchoice,insurancechoice,doctorchoice
 
-class Patience(models.Model):
+class Patient(models.Model):
 	# PATIENCE DATA
 	date 		= models.DateField()
 	full_name 	= models.CharField(max_length=60)
@@ -32,4 +32,4 @@ class Patience(models.Model):
 	doctor = models.CharField(max_length=45, choices=doctorchoice)
 
 	def __unicode__(self):
-		return '%s %s' %(self.name,self.last_name)
+		return self.full_name

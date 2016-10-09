@@ -6,13 +6,13 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404,redirect
 #MYAPPS
-from .models import Patience
+from .models import Patient
 from .constants import insurancechoice,doctorchoice
 #3RDPARTY
 from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter
 
 # START VIEWS
-class PatienceFilter(FilterSet):
+class PatientFilter(FilterSet):
 	full_name			= CharFilter(name='full_name', lookup_type='icontains', distinct=True)
 	phone				= CharFilter(name='phone', lookup_type='icontains', distinct=True)
 	cellphone			= CharFilter(name='cellphone', lookup_type='icontains', distinct=True)
@@ -21,7 +21,7 @@ class PatienceFilter(FilterSet):
 	doctor 				= ChoiceFilter(choices=doctorchoice,distinct=True)
 
 	class Meta:
-		model = Patience
+		model = Patient
 		fields = [
 			"full_name",
 			"phone",

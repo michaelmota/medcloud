@@ -1,9 +1,9 @@
 from django import forms
 
-from .models import Patience
+from .models import Patient
 from .constants import insurancechoice,sexchoice,doctorchoice
 
-class PatienceFilterForm(forms.Form):
+class PatientFilterForm(forms.Form):
 	full_name 			= forms.CharField(label='Nombre Completo', required=False)
 	phone				= forms.CharField(label='Telefono',required=False)
 	cellphone			= forms.CharField(label='Celular',required=False)
