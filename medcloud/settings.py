@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # MYAPPS
     'patients',
+    'comments',
     # 3RDPARTY
     'django_filters',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'medcloud.wsgi.application'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
