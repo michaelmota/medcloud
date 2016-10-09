@@ -1,0 +1,10 @@
+<div>
+	{% for comment in comments %}
+		<blockquote>
+			<p>Motivo: {{comment.objetivo}}</p>
+			<p>{{comment.content}}</p>
+			<footer>via {{comment.usuario}} | {{comment.timestamp|timesince}} ago</footer>
+		</blockquote>
+		<hr/>
+	{% endfor %}
+</div>

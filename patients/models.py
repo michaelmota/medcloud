@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
-
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 
 from .constants import sexchoice,insurancechoice,doctorchoice
 
@@ -29,15 +30,21 @@ class Patient(models.Model):
 	emergency_contact_othernum 		= models.IntegerField()
 	# FORM FILLED BY
 	form_filled_by 		= models.CharField(max_length=45)
-	# DOCTOR
-	doctor = models.CharField(max_length=45, choices=doctorchoice)
 	timestamp = models.DateField(auto_now_add=True,auto_now=False)
+	# HISTORIA MEDICA
+	doctor 					= models.CharField(max_length=45, choices=doctorchoice)
+	antecedentes_personales	= models.TextField(max_length=100,null=True,blank=True)
+	antecedentes_familiares = models.TextField(max_length=100,null=True,blank=True)
+	enfermedad_actual		= models.TextField(max_length=100,null=True,blank=True)
+	signos_sintomas			= models.TextField(max_length=100,null=True,blank=True)
+	rehab_diagnosis			= models.CharField(max_length=100,null=True,blank=True)
+	protocol_treatment		= models.CharField(max_length=100,null=True,blank=True)
 
 	def __unicode__(self):
 		return self.full_name
 
 	def get_absolute_url(self):
-		return reverse("patients:view", kwargs={"id": self.id})
+		return reverse("pacientes:view", kwargs={"id": self.id})
 
 	class Meta:
 		ordering = ["-timestamp"]

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 3RDPARTY
     'django_filters',
     'crispy_forms',
+    'sniplates',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,9 @@ TEMPLATES = [
         'DIRS': [
             # CORE
             os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "templates", "pacientes"),
+            os.path.join(BASE_DIR, "templates", "includes"),
+            os.path.join(BASE_DIR, "templates", "widgets"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

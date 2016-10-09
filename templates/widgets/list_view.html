@@ -1,0 +1,55 @@
+{% block label %}<span class="label label-{{ label_type|default:'default' }}">{{ text }}</span>{% endblock %}
+{% block alert %}<div class="alert alert-{{ alert_type|default:'success' }}" role="alert">{{ text }}</div>{% endblock %}
+{% block breadcrumbs %}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="#">{{name}}</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>{{name2}}</span>
+        </li>
+    </ul>
+</div>
+<h3 class="page-title"> {{title}}<small> {{subtitle}}</small></h3>
+{% endblock %}
+
+{% block pagination %}
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{page_request_var}}={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current text-right">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{page_request_var}}={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+
+<div class="search-pagination">
+    <ul class="pagination">
+        <li class="page-active">
+            <a href="javascript:;"> 1 </a>
+        </li>
+        <li>
+            <a href="javascript:;"> 2 </a>
+        </li>
+        <li>
+            <a href="javascript:;"> 3 </a>
+        </li>
+        <li>
+            <a href="javascript:;"> 4 </a>
+        </li>
+    </ul>
+</div>

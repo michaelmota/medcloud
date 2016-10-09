@@ -4,7 +4,7 @@ sexchoice = (
 )
 
 insurancechoice = (
-	('ARS Humano','ARS Palic'),
+	('ARS Humano','ARS Humano'),
 	('ARS Palic','ARS Palic'),
 	('Universal','Universal'),
 	('SeNaSa','SeNaSa'),

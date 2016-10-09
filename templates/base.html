@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <head>
+        <title>{% block head_title %}CFI{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="{% static 'css/plugins/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet" type="text/css" /> -->
+        <link href="{% static 'css/components-rounded.min.css' %}" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="{% static 'css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/layout.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/darkblue.min.css' %}" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="{% static 'css/custom.min.css' %}" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="favicon.ico" /> 
+        {% block csshead %}{% endblock %}
+    </head>
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+        {% include "header.html" %}
+        <div class="page-container">
+            {% include "l-sidebar.html" %}
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    {% block content %}
+                    {% endblock %}
+                    <!-- END CONTENT -->
+                </div>
+            </div>
+            {% include "r-sidebar.html" %}
+        </div>
+        {% include "footer.html" %}
+        {% block javascript %}{% endblock %}
+    </body>
+</html>

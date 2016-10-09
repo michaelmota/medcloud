@@ -8,6 +8,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 #MYAPPS
 from .models import Patient
 from .constants import insurancechoice,doctorchoice
+from .forms import PatientFilterForm
 #3RDPARTY
 from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter
 
