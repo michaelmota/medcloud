@@ -30,6 +30,25 @@ class Patient(models.Model):
 	form_filled_by 		= models.CharField(max_length=45)
 	# DOCTOR
 	doctor = models.CharField(max_length=45, choices=doctorchoice)
+	timestamp = models.DateField(auto_now_add=True,auto_now=False)
 
 	def __unicode__(self):
 		return self.full_name
+
+	def get_absolute_url(self):
+		return reverse("patients:view", kwargs={"id": self.id})
+
+	class Meta:
+		ordering = ["-timestamp"]
+
+	@property
+	def comments(self):
+		instance = self
+		qs = Comment.objects.filter_by_instance(instance)
+		return qs
+
+	@property
+	def get_content_type(self):
+		instance = self
+		content_type = ContentType.objects.get_for_model(instance.__class__)
+		return content_type

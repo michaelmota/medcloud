@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # MYAPPS
     'patients',
+    # 3RDPARTY
+    'django_filters',
 ]
 
 MIDDLEWARE = [
