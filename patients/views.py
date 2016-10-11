@@ -10,6 +10,7 @@ from .models import Patient
 from .constants import insurancechoice,doctorchoice
 from .forms import PatientFilterForm
 from comments.forms import CommentForm
+from comments.models import Comment
 #3RDPARTY
 from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter
 
@@ -82,6 +83,7 @@ def view_patient(request, id=None):
 	context = {
 		"instance":instance,
 		"comments":comments,
+		"comment_form":form,
 	}
 	return render(request, "paciente_view.html", context)
 
