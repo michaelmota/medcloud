@@ -1,8 +1,7 @@
 from django import forms
 
 from .models import Comment
-from propiedades.constants import objetivochoice
-
+from patients.constants import objetivochoice
 
 class CommentForm(forms.Form):
 	content_type = forms.CharField(widget=forms.HiddenInput)

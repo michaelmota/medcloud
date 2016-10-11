@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% load proptimes %}
 {% load sniplates %}
 {% block head_title %}
 {{ instance.name }} | {{ block.super }}
@@ -12,19 +11,21 @@
 
 {% block content %}
 {% load_widgets listview="widgets/list_view.html" %}
-{% widget "listview:breadcrumbs" name="Propiedades"%}
 <div class="profile">
     <div class="tabbable-line tabbable-full-width">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab_1_1" data-toggle="tab"> Overview </a>
+                <a href="#info-general" data-toggle="tab"> Información General </a>
             </li>
             <li>
-                <a href="#tab_1_3" data-toggle="tab"> Account </a>
+                <a href="#historia_clinica" data-toggle="tab"> Historia Clinica </a>
+            </li>
+            <li>
+                <a href="#record_citas" data-toggle="tab"> Record de Citas </a>
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="tab_1_1">
+            <div class="tab-pane active" id="info-general">
                 <div class="row">
                     <div class="col-md-3">
                         <ul class="list-unstyled profile-nav">
@@ -35,138 +36,167 @@
                                 {% endif %}
                                 <a href="javascript:;" class="profile-edit"> edit </a>
                             </li>
-                            <li><a data-toggle="modal" href="#new_comment"> Nuevo Comentario <span> 
+                            <li><a data-toggle="modal" href="#new_comment"> Nueva Cita <span> 
                             <i class="fa fa-plus"></i> </span></a></li>
-                            <li><a href="{% url 'propiedades:edit' id=instance.id %}"> Editar Propiedad <span style="background-color: #68e268;"> 
+                            <li><a href="{% url 'pacientes:edit' id=instance.id %}"> Ver todas las citas <span style="background-color: #F1C40F;"><i class="fa fa-calendar-check-o"></i> </span></a></li>
+                            <li><a href="{% url 'pacientes:edit' id=instance.id %}"> Editar Paciente <span style="background-color: #68e268;"> 
                             <i class="fa fa-pencil"></i> </span></a></li>
-                            <li><a data-toggle="modal" href="#delete"> Eliminar Propiedad  <span style="background-color: #f95d5d;"> 
+                            <li><a data-toggle="modal" href="#delete"> Eliminar Paciente  <span style="background-color: #f95d5d;"> 
                             <i class="fa fa-times"></i> </span></a></li>
                         </ul>
                     </div>
                     <div class="col-md-9">
                         <div class="row">
-                            <div class="col-md-8 profile-info">
-                                <h1 class="font-green sbold uppercase">{{instance.name}}</h1>
-                                <p>{{instance.additionalinfo}}</p>
-                                <ul class="list-inline">
-                                    <div class="col-xs-6">
-                                        <li><i class="fa fa-tags"></i> <strong>Categoría:</strong></br> 
-                                        <li><i class="fa fa-paint-brush"></i> <strong>Estilo de la Propiedad:</strong></br> 
-                                        <li><i class="fa fa-folder-open-o"></i> <strong>Estado / Condición:</strong></br> 
-                                        <li><i class="fa fa-key"></i> <strong>No. de Llaves Asignadas:</strong></br> 
-                                        <li><i class="fa fa-map-marker"></i> <strong>Provincia:</strong></br> 
-                                        <li><i class="fa fa-map-o"></i> <strong>Ciudad:</strong></br> 
-                                        <li><i class="fa fa-map-signs"></i> <strong>Sector:</strong></br> 
-                                        <li><i class="fa fa-location-arrow"></i> <strong>Dirección:</strong></br> 
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <li>{{instance.category}}</li>
-                                        <li>{{instance.style}}</li>
-                                        <li>{{instance.condition}}</li>
-                                        <li>{{instance.keys}}</li>
-                                        <li>{{instance.region_province}}</li>
-                                        <li>{{instance.city}}</li>
-                                        <li>{{instance.sector}}</li>
-                                        <li>{{instance.address}}</li>
-                                    </div>
-                                </ul>
-                                <div class="clearfix"> <font color="white">.</font></div>
-                            </div>
-                            <!--end col-md-8-->
-                            <div class="col-md-4">
+                            <div class="col-md-12 profile-info">
                                 <div class="portlet sale-summary">
-                                    <div class="portlet-title">
-                                        <div class="caption font-red sbold"> Precio y Modalidad </div>
-                                        <div class="tools">
-                                            <a class="reload" href="javascript:;"> </a>
-                                        </div>
-                                    </div>
                                     <div class="portlet-body">
                                         <ul class="list-unstyled">
+                                            <li><h3>Datos Principales</h3></li>
                                             <li>
-                                                <span class="sale-info"> PRECIO DE VENTA
-                                                    <i class="fa fa-img-up"></i>
-                                                </span>
-                                                {% if instance.price == null %}
-                                                <span class="sale-num"> N/A </span>
-                                                {% else %}
-                                                <span class="sale-num"> {{instance.currency}}$ {{instance.price}} </span>
-                                                {% endif %}
+                                                <span class="sale-info"> Nombre Completo</i></span>
+                                                <span class="sale-num"> {{instance.full_name}} </span>
                                             </li>
                                             <li>
-                                                <span class="sale-info"> PRECIO DE ALQUILER
-                                                    <i class="fa fa-img-down"></i>
-                                                </span>
-                                                {% if instance.rent_price == null %}
-                                                <span class="sale-num"> N/A </span>
-                                                {% else %}
-                                                <span class="sale-num"> {{instance.currency}}$ {{instance.rent_price}} </span>
-                                                {% endif %}
+                                                <span class="sale-info"> Cedula</i></span>
+                                                <span class="sale-num"> {{instance.id_card_number}} </span>
                                             </li>
                                             <li>
-                                                <span class="sale-info"> MODALIDAD </span>
-                                                <span class="sale-num"> {{instance.listing_type}} </span>
+                                                <span class="sale-info"> Sexo / Edad</i></span>
+                                                <span class="sale-num"> {{instance.sex}} / {{instance.age}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Fecha de Nacimiento </span>
+                                                <span class="sale-num"> {{instance.birthdate}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Seguro Medico </span>
+                                                <span class="sale-num"> {{instance.insurancecompany}} </span>
+                                            </li>
+                                            <li><h3>Informacion de Contacto</h3></li>
+                                            <li>
+                                                <span class="sale-info"> Direccion </span>
+                                                <span class="sale-num"> {{instance.address}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Telefono </span>
+                                                <span class="sale-num"> {{instance.phone}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Telefono 2 </span>
+                                                <span class="sale-num"> {{instance.other_phone}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Celular </span>
+                                                <span class="sale-num"> {{instance.cellphone}} </span>
+                                            </li>
+                                            <li><h3>Informacion Laboral</h3></li>
+                                            <li>
+                                                <span class="sale-info"> Ocupacion </span>
+                                                <span class="sale-num"> {{instance.occupation}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Lugar de Trabajo </span>
+                                                <span class="sale-num"> {{instance.placeofwork}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Posicion </span>
+                                                <span class="sale-num"> {{instance.position}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Telefono de Trabajo </span>
+                                                <span class="sale-num"> {{instance.work_phone}} </span>
+                                            </li>
+                                            <li><h3>Contacto de Emergencia</h3></li>
+                                            <li>
+                                                <span class="sale-info"> Contacto de Emergencia </span>
+                                                <span class="sale-num"> {{instance.in_case_of_emergency_contact}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Telefono </span>
+                                                <span class="sale-num"> {{instance.emergency_contact_phone}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Celular </span>
+                                                <span class="sale-num"> {{instance.emergency_contact_cellphone}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Otro Telefono </span>
+                                                <span class="sale-num"> {{instance.emergency_contact_othernum}} </span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <!--end col-md-4-->
-                        </div>
-                        <!--end row-->
-                        <div class="tabbable-line tabbable-custom-profile">
-                            <ul class="nav nav-tabs">
-                                <li class="active">
-                                    <a href="#tab_1_11" data-toggle="tab"> Comentarios </a>
-                                </li>
-                                <li>
-                                    <a href="#llamadas" data-toggle="tab"> Interesados / Llamadas </a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="tab_1_11">
-                                    <div class="portlet-body">
-                                    {% include "comments.html" %}
-                                    </div>
-                                </div>
-                                <!--tab-pane-->
-                                <div class="tab-pane" id="llamadas">
-                                    <div class="tab-pane active" id="tab_1_1_1">
-                                        <div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-                                            <ul class="feeds">
-                                                {% for llamada in interesados %}
-                                                <li>
-                                                    <a href="{% url 'llamadas:view' id=llamada.id %}">
-                                                        <div class="col1">
-                                                            <div class="cont">
-                                                                <div class="cont-col1">
-                                                                    <div class="label label-success">
-                                                                        <i class="fa fa-bell-o"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="cont-col2">
-                                                                    <div class="desc">{{llamada}}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col2">
-                                                            <div class="date"> {{llamada.timestamp|timesince|upto:','}} </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                {% endfor %} 
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--tab-pane-->
+                                <div class="clearfix"> <font color="white">.</font></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--tab_1_2-->
-            <div class="tab-pane" id="tab_1_3">
+            <div class="tab-pane" id="historia_clinica">
+                            <div class="row">
+                    <div class="col-md-3">
+                        <ul class="list-unstyled profile-nav">
+                            <li>
+                                {% if instance.featured_image %}
+                                <img src="{{instance.featured_image.url}}" class="img-responsive pic-bordered" alt="" />
+                                {% else %}
+                                {% endif %}
+                                <a href="javascript:;" class="profile-edit"> edit </a>
+                            </li>
+                            <li><a data-toggle="modal" href="#new_comment"> Nueva Cita <span> 
+                            <i class="fa fa-plus"></i> </span></a></li>
+                            <li><a href="{% url 'pacientes:edit' id=instance.id %}"> Ver todas las citas <span style="background-color: #F1C40F;"><i class="fa fa-calendar-check-o"></i> </span></a></li>
+                            <li><a href="{% url 'pacientes:edit' id=instance.id %}"> Editar Paciente <span style="background-color: #68e268;"> 
+                            <i class="fa fa-pencil"></i> </span></a></li>
+                            <li><a data-toggle="modal" href="#delete"> Eliminar Paciente  <span style="background-color: #f95d5d;"> 
+                            <i class="fa fa-times"></i> </span></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12 profile-info">
+                                <div class="portlet sale-summary">
+                                    <div class="portlet-body">
+                                        <ul class="list-unstyled">
+                                            <li><h3>Historia Clinica</h3></li>
+                                            <li>
+                                                <span class="sale-info"> Médico</i></span>
+                                                <span class="sale-num"> {{instance.doctor}} </span>
+                                            </li>
+                                            <li>
+                                                <span class="sale-info"> Fecha registrado</i></span>
+                                                <span class="sale-num"> {{instance.timestamp}} </span>
+                                            </li>
+                                        </ul>
+                                        <hr/>
+                                        <h4>Antecedentes Personales</h4>
+                                        <p>{{instance.antecedentes_personales}}</p>
+                                        <hr/>
+                                        <h4>Antecedentes Familiares</h4>
+                                        <p>{{instance.antecedentes_familiares}}</p>
+                                        <hr/>
+                                        <h4>Historia Enfermedad Actual</h4>
+                                        <p>{{instance.enfermedad_actual}}</p>
+                                        <hr/>
+                                        <h4>Signos y Sintomas</h4>
+                                        <p>{{instance.signos_sintomas}}</p>
+                                        <hr/>
+                                        <h4>Diagnóstico de Rehabilitación</h4>
+                                        <p>{{instance.rehab_diagnosis}}</p>
+                                        <hr/>
+                                        <h4>Protocolo o Plan de Tratamiento</h4>
+                                        <p>{{instance.protocol_treatment}}</p>
+                                        <hr/>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> <font color="white">.</font></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="record_citas">
                 <div class="row profile-account">
                     <div class="col-md-3">
                         <ul class="ver-inline-menu tabbable margin-bottom-10">
@@ -380,7 +410,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancelar</button>
-                <a href="{% url 'propiedades:delete' id=instance.id %}" class="btn red"/>Eliminar</a>
+                <a href="{% url 'pacientes:delete' id=instance.id %}" class="btn red"/>Eliminar</a>
             </div>
         </div>
     </div>

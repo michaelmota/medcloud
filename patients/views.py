@@ -82,9 +82,8 @@ def view_patient(request, id=None):
 	context = {
 		"instance":instance,
 		"comments":comments,
-		"comment_form":comment_form,
 	}
-	return render(request, "patient_view.html", context)
+	return render(request, "paciente_view.html", context)
 
 def new_patient(request):
 	form = PatientCreateForm(request.POST or None)

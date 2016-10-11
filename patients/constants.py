@@ -15,3 +15,7 @@ doctorchoice = (
 	('Raul Rodriguez', 'Raul Rodriguez'),
 	('El Viejo', 'El Viejo'),
 )
+
+objetivochoice = (
+	('Nueva visita','Nueva visita'),
+)

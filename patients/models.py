@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 
 from .constants import sexchoice,insurancechoice,doctorchoice
-
+from comments.models import Comment
 class Patient(models.Model):
 	# PATIENCE DATA
 	date 		= models.DateField()
