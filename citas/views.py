@@ -7,36 +7,29 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404,redirect
 #MYAPPS
 from .models import Cita
+from .forms import CitaFilterForm
+from patients.constants import insurancechoice,doctorchoice
+from patients.models import Patient
 from comments.forms import CommentForm
 from comments.models import Comment
 #3RDPARTY
-from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter
+from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter,ModelChoiceFilter
 
 # START VIEWS
-# class CitaFilter(FilterSet):
-# 	full_name			= CharFilter(name='full_name', lookup_type='icontains', distinct=True)
-# 	phone				= CharFilter(name='phone', lookup_type='icontains', distinct=True)
-# 	cellphone			= CharFilter(name='cellphone', lookup_type='icontains', distinct=True)
-# 	id_card_number		= CharFilter(name='id_card_number', lookup_type='icontains', distinct=True)
-# 	insurancecompany	= ChoiceFilter(choices=insurancechoice,distinct=True)
-# 	doctor 				= ChoiceFilter(choices=doctorchoice,distinct=True)
+class CitaFilter(FilterSet):
+	patient	= ModelChoiceFilter(queryset=Patient.objects.all(), distinct=True)
 
-# 	class Meta:
-# 		model = Patient
-# 		fields = [
-# 			"full_name",
-# 			"phone",
-# 			"cellphone",
-# 			"id_card_number",
-# 			"insurancecompany",
-# 			"doctor",
-# 		]
+	class Meta:
+		model = Cita
+		fields = [
+			"patient",
+		]
 
 def list_cita(request):
-	citas = Patient.objects.all()
+	citas = Cita.objects.all()
 	# FILTER
-	filterform = PatientFilterForm(data=request.GET or None)
-	f = PatientFilter(request.GET, queryset=citas)
+	filterform = CitaFilterForm(data=request.GET or None)
+	f = CitaFilter(request.GET, queryset=citas)
 	# PAGINATOR
 	paginator = Paginator(citas,10)
 	page_request = "page"

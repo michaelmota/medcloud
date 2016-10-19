@@ -17,6 +17,3 @@ class Cita(models.Model):
 	diagnosis = models.TextField(max_length=500)
 	# CREATED
 	timestamp = models.DateField(auto_now_add=True,auto_now=False)
-
-	def __unicode__(self):
-		return self.patient
