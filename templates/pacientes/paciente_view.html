@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load sniplates %}
 {% block head_title %}
-{{ instance.name }} | {{ block.super }}
+{{ instance.full_name }} | {{ block.super }}
 {% endblock %}
 
 {% block csshead %}
@@ -50,83 +50,96 @@
                             <div class="col-md-12 profile-info">
                                 <div class="portlet sale-summary">
                                     <div class="portlet-body">
-                                        <ul class="list-unstyled">
-                                            <li><h3>Datos Principales</h3></li>
-                                            <li>
-                                                <span class="sale-info"> Nombre Completo</i></span>
-                                                <span class="sale-num"> {{instance.full_name}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Cedula</i></span>
-                                                <span class="sale-num"> {{instance.id_card_number}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Sexo / Edad</i></span>
-                                                <span class="sale-num"> {{instance.sex}} / {{instance.age}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Fecha de Nacimiento </span>
-                                                <span class="sale-num"> {{instance.birthdate}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Seguro Medico </span>
-                                                <span class="sale-num"> {{instance.insurancecompany}} </span>
-                                            </li>
-                                            <li><h3>Informacion de Contacto</h3></li>
-                                            <li>
-                                                <span class="sale-info"> Direccion </span>
-                                                <span class="sale-num"> {{instance.address}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Telefono </span>
-                                                <span class="sale-num"> {{instance.phone}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Telefono 2 </span>
-                                                <span class="sale-num"> {{instance.other_phone}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Celular </span>
-                                                <span class="sale-num"> {{instance.cellphone}} </span>
-                                            </li>
-                                            <li><h3>Informacion Laboral</h3></li>
-                                            <li>
-                                                <span class="sale-info"> Ocupacion </span>
-                                                <span class="sale-num"> {{instance.occupation}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Lugar de Trabajo </span>
-                                                <span class="sale-num"> {{instance.placeofwork}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Posicion </span>
-                                                <span class="sale-num"> {{instance.position}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Telefono de Trabajo </span>
-                                                <span class="sale-num"> {{instance.work_phone}} </span>
-                                            </li>
-                                            <li><h3>Contacto de Emergencia</h3></li>
-                                            <li>
-                                                <span class="sale-info"> Contacto de Emergencia </span>
-                                                <span class="sale-num"> {{instance.in_case_of_emergency_contact}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Telefono </span>
-                                                <span class="sale-num"> {{instance.emergency_contact_phone}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Celular </span>
-                                                <span class="sale-num"> {{instance.emergency_contact_cellphone}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Otro Telefono </span>
-                                                <span class="sale-num"> {{instance.emergency_contact_othernum}} </span>
-                                            </li>
-                                        </ul>
+                                        <table class="table table-striped table-bordered table-hover" id="info-general">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>INFORMACIÓN PRINCIPAL</strong></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Nombre Completo </td>
+                                                    <td> {{instance.full_name}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Cédula </td>
+                                                    <td> {{instance.id_card_number}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Sexo / Edad </td>
+                                                    <td> {{instance.sex}} / {{instance.age}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Fecha de Nacimiento </td>
+                                                    <td> {{instance.birthdate}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Seguro Médico </td>
+                                                    <td> {{instance.insurancecompany}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>INFORMACIÓN DE CONTACTO</strong></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Dirección </td>
+                                                    <td> {{instance.address}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Teléfono </td>
+                                                    <td> {{instance.phone}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Teléfono 2 </td>
+                                                    <td> {{instance.other_phone}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Celular </td>
+                                                    <td> {{instance.cellphone}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>INFORMACIÓN LABORAL</strong></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Ocupación </td>
+                                                    <td> {{instance.occupation}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Lugar de Trabajo </td>
+                                                    <td> {{instance.placeofwork}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Posición </td>
+                                                    <td> {{instance.position}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Teléfono del Trabajo </td>
+                                                    <td> {{instance.work_phone}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>CONTACTO DE EMERGENCIA</strong></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Nombre </td>
+                                                    <td> {{instance.in_case_of_emergency_contact}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Teléfono </td>
+                                                    <td> {{instance.emergency_contact_phone}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Teléfono 2 </td>
+                                                    <td> {{instance.emergency_contact_cellphone}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Celular </td>
+                                                    <td> {{instance.emergency_contact_othernum}} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="clearfix"> <font color="white">.</font></div>
                             </div>
                         </div>
                     </div>
@@ -158,17 +171,22 @@
                             <div class="col-md-12 profile-info">
                                 <div class="portlet sale-summary">
                                     <div class="portlet-body">
-                                        <ul class="list-unstyled">
-                                            <li><h3>Historia Clinica</h3></li>
-                                            <li>
-                                                <span class="sale-info"> Médico</i></span>
-                                                <span class="sale-num"> {{instance.doctor}} </span>
-                                            </li>
-                                            <li>
-                                                <span class="sale-info"> Fecha registrado</i></span>
-                                                <span class="sale-num"> {{instance.timestamp}} </span>
-                                            </li>
-                                        </ul>
+                                        <table class="table table-striped table-bordered table-hover" id="info-general">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>HISTORIA CLINICA</strong></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Médico</td>
+                                                    <td>{{instance.doctor}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fecha Registrado</td>
+                                                    <td>{{instance.timestamp}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                         <hr/>
                                         <h4>Antecedentes Personales</h4>
                                         <p>{{instance.antecedentes_personales}}</p>
@@ -265,14 +283,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Eliminar Propiedad - ID: {{instance.id}}</h4>
+                <h4 class="modal-title">Eliminar Paciente - ID: {{instance.id}}</h4>
             </div>
             <div align="center" class="modal-body">
-                <strong>¿Estas seguro que quieres eliminar esta propiedad?</strong></br></br>
-                <ul align="left" class="list-inline">
-                    <li>- ID: {{instance.id}}</li></br>
-                    <li>- Nombre: {{instance.name}}</li></br>
-                </ul>
+                <strong>¿Estas seguro que quieres eliminar este paciente?</strong></br></br>
+                <table class="table table-striped table-bordered table-hover" id="info-general">
+                    <tbody>
+                        <tr>
+                            <td>Nombre Paciente</td>
+                            <td>{{instance.full_name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancelar</button>
