@@ -76,7 +76,7 @@ def view_cita(request, id=None):
 		"comments":comments,
 		"comment_form":form,
 	}
-	return render(request, "paciente_view.html", context)
+	return render(request, "cita_view.html", context)
 
 def edit_cita(request):
 	return render(request, "cita_form.html", context)
