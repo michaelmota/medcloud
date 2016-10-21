@@ -4,6 +4,7 @@ sexchoice = (
 )
 
 insurancechoice = (
+	('','-- Seleccionar --'),
 	('ARS Humano','ARS Humano'),
 	('ARS Palic','ARS Palic'),
 	('Universal','Universal'),
@@ -12,6 +13,7 @@ insurancechoice = (
 )
 
 doctorchoice = (
+	('','-- Seleccionar --'),
 	('Raul Rodriguez', 'Raul Rodriguez'),
 	('El Viejo', 'El Viejo'),
 )

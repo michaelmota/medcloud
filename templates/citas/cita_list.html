@@ -2,17 +2,15 @@
 {% load staticfiles %}
 {% load sniplates %}
 {% block head_title %}Pacientes | {{block.super}}{% endblock %}
-
+{% block citas %}active{% endblock %}
 {% block csshead %}
 <link href="{% static 'css/search.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/datatables/datatables.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/datatables/datatables.bootstrap.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
 {% load_widgets listview="widgets/list_view.html" %}
-<div class="search-page search-content-2">
-    <div class="col-12">
-
-    </div>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -116,4 +114,8 @@
 {% endblock %}
 {% block javascript %}
 <script src="{% static 'js/ui-modals.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/datatables/datatable.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/datatables/datatables.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/datatables/datatables.bootstrap.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/datatables/table-datatables-managed.min.js' %}" type="text/javascript"></script>
 {% endblock %}

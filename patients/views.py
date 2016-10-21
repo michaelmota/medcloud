@@ -8,7 +8,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 #MYAPPS
 from .models import Patient
 from .constants import insurancechoice,doctorchoice
-from .forms import PatientFilterForm
+from .forms import PatientFilterForm, PatientCreateForm
 from comments.forms import CommentForm
 from comments.models import Comment
 #3RDPARTY
@@ -58,6 +58,18 @@ def list_patient(request):
 	}
 	return render(request, "paciente_list.html", context)
 
+def new_patient(request):
+	form = PatientCreateForm(request.POST or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		return HttpResponseRedirect(instance.get_absolute_url())
+
+	context = {
+		"form":form,
+	}
+	return render(request, "paciente_form.html", context)
+
 def view_patient(request, id=None):
 	instance = get_object_or_404(Patient, id=id)
 	# COMMENT FORM
@@ -87,21 +99,19 @@ def view_patient(request, id=None):
 	}
 	return render(request, "paciente_view.html", context)
 
-def new_patient(request):
-	form = PatientCreateForm(request.POST or None)
+def edit_patient(request, id=None):
+	instance = get_object_or_404(Patient, id=id)
+	form = PatientCreateForm(request.POST or None, instance=instance)
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.save()
-		messages.success(request, "Se ha creado el paciente con el ID: %s correctamente." %(instance.id))
 		return HttpResponseRedirect(instance.get_absolute_url())
 
 	context = {
+		"instance":instance,
 		"form":form,
 	}
-	return render(request, "patient_form.html", context)
-
-def edit_patient(request):
-	return render(request, "patient_form.html", context)
+	return render(request, "paciente_form.html", context)
 
 def delete_patient(request):
 	return redirect("patients:list")
