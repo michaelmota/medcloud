@@ -31,12 +31,12 @@ class Patient(models.Model):
 	emergency_contact_othernum 		= models.IntegerField()
 	# HISTORIA MEDICA
 	doctor 					= models.CharField(max_length=45, choices=doctorchoice)
-	antecedentes_personales	= models.TextField(max_length=100,null=True,blank=True)
-	antecedentes_familiares = models.TextField(max_length=100,null=True,blank=True)
-	enfermedad_actual		= models.TextField(max_length=100,null=True,blank=True)
-	signos_sintomas			= models.TextField(max_length=100,null=True,blank=True)
-	rehab_diagnosis			= models.CharField(max_length=100,null=True,blank=True)
-	protocol_treatment		= models.CharField(max_length=100,null=True,blank=True)
+	antecedentes_personales	= models.TextField(max_length=500,null=True,blank=True)
+	antecedentes_familiares = models.TextField(max_length=500,null=True,blank=True)
+	enfermedad_actual		= models.TextField(max_length=500,null=True,blank=True)
+	signos_sintomas			= models.TextField(max_length=500,null=True,blank=True)
+	rehab_diagnosis			= models.CharField(max_length=500,null=True,blank=True)
+	protocol_treatment		= models.CharField(max_length=500,null=True,blank=True)
 	form_filled_by 		= models.CharField(max_length=45, blank=True,null=True)
 	# faltante
 	date 				= models.DateField(blank=True,null=True)
