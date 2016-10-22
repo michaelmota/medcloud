@@ -35,20 +35,20 @@
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                     <thead>
                         <tr>
+                            <th class="hidden-xs"> Fecha </th>
                             <th> Nombre </th>
                             <th> Telefono/s </th>
                             <th class="hidden-xs"> Doctor </th>
-                            <th class="hidden-xs"> Fecha </th>
                             <th> Acciones </th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for object in pacientes %}
                         <tr class="odd gradeX">
+                            <td class="hidden-xs"><span> {{object.timestamp}} </span></td>
                             <td> <a href="{% url 'pacientes:view' id=object.id %}">{{object.full_name}}</a> </td>
                             <td> {{object.phone}}</br>{{object.cellphone}}</td>
                             <td class="center hidden-xs"> {{object.doctor}} </td>
-                            <td class="hidden-xs"><span> {{object.timestamp}} </span></td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Accion

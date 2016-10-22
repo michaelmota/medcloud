@@ -7,9 +7,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404,redirect
 #MYAPPS
 from .models import Cita
-from .forms import CitaFilterForm
+from .forms import CitaFilterForm,CitaCreateForm
 from patients.constants import insurancechoice,doctorchoice
-from patients.models import Patient
 from comments.forms import CommentForm
 from comments.models import Comment
 #3RDPARTY
@@ -17,21 +16,20 @@ from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter,ModelC
 
 # START VIEWS
 class CitaFilter(FilterSet):
-	patient	= ModelChoiceFilter(queryset=Patient.objects.all(), distinct=True)
+	paciente__patient = CharFilter(lookup_expr='icontains', distinct=True)
 
 	class Meta:
 		model = Cita
 		fields = [
-			"patient",
+			"paciente__patient",
 		]
 
 def list_cita(request):
 	citas = Cita.objects.all()
-	# FILTER
 	filterform = CitaFilterForm(data=request.GET or None)
 	f = CitaFilter(request.GET, queryset=citas)
 	# PAGINATOR
-	paginator = Paginator(citas,10)
+	paginator = Paginator(citas, 20)
 	page_request = "page"
 	page = request.GET.get(page_request)
 	try:
@@ -40,17 +38,26 @@ def list_cita(request):
 		queryset = paginator.page(1)
 	except EmptyPage:
 		queryset = paginator.page(paginator.num_pages)
+	# FORM
+	form = CitaCreateForm(request.POST or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		messages.success(request, "Se ha creado con exito la llamada")
+		return redirect("citas:list")
 
 	context = {
-		"citas":f,
-		"filterform":filterform,
-		"page_request":page_request,
+		"form":form,
 		"object_list":queryset,
+		"citas":f,
+		"page_request":page_request,
+		"filterform":filterform,
 	}
+
 	return render(request, "cita_list.html", context)
 
 def view_cita(request, id=None):
-	instance = get_object_or_404(Patient, id=id)
+	instance = get_object_or_404(Cita, id=id)
 	# COMMENT FORM
 	initial_data = {
 		"content_type":instance.get_content_type,

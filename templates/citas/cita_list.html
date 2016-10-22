@@ -22,7 +22,7 @@
                 <div class="actions">
                     <div align="right" class="col-sm-12 col-xs-12">
                         <a href="#buscar" data-toggle="modal" class="btn green"><i class="fa fa-search"></i></a>
-                        <a href="#" class="btn blue">Nueva Cita</a>
+                        <a href="#nuevo" data-toggle="modal" class="btn blue">Nueva Cita</a>
                     </div>
                 </div>
             </div>
@@ -30,18 +30,18 @@
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                     <thead>
                         <tr>
+                            <th> Fecha </th>
                             <th> Paciente </th>
                             <th> Doctor </th>
-                            <th> Fecha </th>
                             <th> Acciones </th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for object in citas %}
                         <tr class="odd gradeX">
-                            <td> <a href="{% url 'citas:view' id=object.id %}">{{object.patient}}</a> </td>
-                            <td> {{object.doctor}}</td>
                             <td class="hidden-xs"><span> {{object.date}} </span></td>
+                            <td> <a href="{% url 'citas:view' id=object.id %}">{{object.paciente}}</a> </td>
+                            <td> {{object.doctor}}</td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Accion
@@ -91,6 +91,63 @@
         </div>
     </div>
 </div>
+</div>
+<div class="modal fade" id="nuevo" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Nueva Cita</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="#">{% csrf_token %}
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label>Paciente</label>
+                            {{form.paciente}}
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Fecha</label>
+                            {{form.date}}
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label>Doctor</label>
+                            {{form.doctor}}
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Aseguradora</label>
+                            {{form.insurance}}
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label>Observaciones</label>
+                            {{form.observaciones}}
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Diagnóstico</label>
+                            {{form.diagnosis}}
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cancelar</button>
+                <input type='submit' value='Agregar' class='btn green'>
+            </form>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="buscar" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">

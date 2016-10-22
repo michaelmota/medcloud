@@ -1,249 +1,286 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load sniplates %}
+{% load crispy_forms_tags %}
 {% block head_title %}
-{% if instance.full_name %}{{instance.full_name}}{% else %}Nuevo Paciente{% endif %} | {{ block.super }}
+{% if instance.full_name %}{{instance.name}}{% else %}Nuevo Paciente{% endif %} | {{ block.super }}
 {% endblock %}
-
+{% block pacientes %}active{% endblock %}
 {% block csshead %}
-<link href="{% static 'css/perfil.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/select2-bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
-
 {% block content %}
-<div class="portlet box blue">
+<div class="portlet light bordered" id="form_wizard_1">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>Información Principal</div>
-    </div>
-    <div class="portlet-body form" style="display: block;">
-        <!-- BEGIN FORM-->
-        <form action="#" class="form-horizontal">
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Nombre Completo</label>
-                    <div class="col-md-4">
-                        {{form.full_name}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Cédula</label>
-                    <div class="col-md-4">
-                        {{form.id_card_number}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Sexo</label>
-                    <div class="col-md-4">
-                        {{form.sex}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Edad</label>
-                    <div class="col-md-4">
-                        {{form.age}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Fecha de Nacimiento</label>
-                    <div class="col-md-4">
-                        {{form.birthdate}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Referido Por</label>
-                    <div class="col-md-4">
-                        {{form.refered_by}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Seguro Médico</label>
-                    <div class="col-md-4">
-                        {{form.insurancecompany}}
-                    </div>
-                </div>
-            </div>
+            <i class=" icon-layers font-red"></i>
+            <span class="caption-subject font-red bold uppercase"> Agregar nueva Propiedad -
+                <span class="step-title"> Paso 1 de 5 </span>
+            </span>
         </div>
-</div>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-gift"></i>Información de Contacto</div>
+        <div class="actions">
+            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                <i class="icon-cloud-upload"></i>
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                <i class="icon-wrench"></i>
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                <i class="icon-trash"></i>
+            </a>
+        </div>
     </div>
-    <div class="portlet-body form" style="display: block;">
-        <!-- BEGIN FORM-->
-        <div class="form-horizontal">
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Dirección</label>
-                    <div class="col-md-4">
-                        {{form.address}}
+    <div class="portlet-body form">
+        <form class="form-horizontal" role="form" id="submit_form" action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+            <div class="form-wizard">
+                <div class="form-body">
+                    <ul class="nav nav-pills nav-justified steps">
+                        <li>
+                            <a href="#tab1" data-toggle="tab" class="step">
+                                <span class="number"> 1 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Información Principal </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab2" data-toggle="tab" class="step">
+                                <span class="number"> 2 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Información Contacto </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab3" data-toggle="tab" class="step active">
+                                <span class="number"> 3 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Información Laboral </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab4" data-toggle="tab" class="step active">
+                                <span class="number"> 4 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Contacto Emergencia </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab5" data-toggle="tab" class="step active">
+                                <span class="number"> 5 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Historia Médica </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="bar" class="progress progress-striped" role="progressbar">
+                        <div class="progress-bar progress-bar-success"> </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="alert alert-danger display-none">
+                            <button class="close" data-dismiss="alert"></button> El formulario tiene errores, favor validarlos. </div>
+                        <div class="alert alert-success display-none">
+                            <button class="close" data-dismiss="alert"></button> Your form validation is successful! </div>
+                        <div class="tab-pane active" id="tab1">
+                            <h3 class="block">Información Principal</h3>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nombre Completo</label>
+                                <div class="col-md-4">
+                                    {{form.full_name}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Cédula</label>
+                                <div class="col-md-4">
+                                    {{form.id_card_number}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Sexo</label>
+                                <div class="col-md-4">
+                                    {{form.sex}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Edad</label>
+                                <div class="col-md-4">
+                                    {{form.age}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Fecha de Nacimiento</label>
+                                <div class="col-md-4">
+                                    {{form.birthdate}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Referido Por</label>
+                                <div class="col-md-4">
+                                    {{form.refered_by}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Seguro Médico</label>
+                                <div class="col-md-4">
+                                    {{form.insurancecompany}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <h3 class="block">Información de Contacto</h3>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Dirección</label>
+                                <div class="col-md-4">
+                                    {{form.address}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Teléfono</label>
+                                <div class="col-md-4">
+                                    {{form.phone}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Teléfono 2</label>
+                                <div class="col-md-4">
+                                    {{form.other_phone}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Celular</label>
+                                <div class="col-md-4">
+                                    {{form.cellphone}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <h3 class="block">Información Laboral</h3>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Ocupación</label>
+                                <div class="col-md-4">
+                                    {{form.occupation}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Lugar de Trabajo</label>
+                                <div class="col-md-4">
+                                    {{form.placeofwork}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Posición</label>
+                                <div class="col-md-4">
+                                    {{form.position}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Teléfono del Trabajo</label>
+                                <div class="col-md-4">
+                                    {{form.work_phone}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab4">
+                            <h3 class="block">Contacto de Emergencia</h3>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">En caso de emergencia contactar a</label>
+                                <div class="col-md-4">
+                                    {{form.in_case_of_emergency_contact}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Teléfono</label>
+                                <div class="col-md-4">
+                                    {{form.emergency_contact_phone}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Celular</label>
+                                <div class="col-md-4">
+                                    {{form.emergency_contact_cellphone}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Otro numero</label>
+                                <div class="col-md-4">
+                                    {{form.emergency_contact_othernum}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab5">
+                            <h3 class="block">Historia Medica</h3>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Doctor</label>
+                                <div class="col-md-4">
+                                    {{form.doctor}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Antecedentes Personales</label>
+                                <div class="col-md-4">
+                                    {{form.antecedentes_personales}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Antecedentes Familiares</label>
+                                <div class="col-md-4">
+                                    {{form.antecedentes_familiares}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Historia Enfermedad Actual</label>
+                                <div class="col-md-4">
+                                    {{form.enfermedad_actual}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Signos y Sintomas</label>
+                                <div class="col-md-4">
+                                    {{form.signos_sintomas}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Diagnóstico de Rehabilitación</label>
+                                <div class="col-md-4">
+                                    {{form.rehab_diagnosis}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Protocolo o Plan de Tratamiento</label>
+                                <div class="col-md-4">
+                                    {{form.protocol_treatment}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Formulario llenado por</label>
+                                <div class="col-md-4">
+                                    {{form.form_filled_by}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Teléfono</label>
-                    <div class="col-md-4">
-                        {{form.phone}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Teléfono 2</label>
-                    <div class="col-md-4">
-                        {{form.other_phone}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Celular</label>
-                    <div class="col-md-4">
-                        {{form.cellphone}}
-                    </div>
-                </div>
-            </div>
-            <!-- FORM END -->
-    </div>
-</div>
-</div>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-gift"></i>Información Laboral</div>
-    </div>
-    <div class="portlet-body form" style="display: block;">
-        <!-- BEGIN FORM-->
-        <div class="form-horizontal">
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Ocupación</label>
-                    <div class="col-md-4">
-                        {{form.occupation}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Lugar de Trabajo</label>
-                    <div class="col-md-4">
-                        {{form.placeofwork}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Posición</label>
-                    <div class="col-md-4">
-                        {{form.position}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Teléfono del Trabajo</label>
-                    <div class="col-md-4">
-                        {{form.work_phone}}
-                    </div>
-                </div>
-            </div>
-            <!-- FORM END -->
-    </div>
-</div>
-</div>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-gift"></i>Contacto de Emergencia</div>
-    </div>
-    <div class="portlet-body form" style="display: block;">
-        <!-- BEGIN FORM-->
-        <div class="form-horizontal">
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">En caso de emergencia contactar a</label>
-                    <div class="col-md-4">
-                        {{form.in_case_of_emergency_contact}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Teléfono</label>
-                    <div class="col-md-4">
-                        {{form.emergency_contact_phone}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Celular</label>
-                    <div class="col-md-4">
-                        {{form.emergency_contact_cellphone}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Otro numero</label>
-                    <div class="col-md-4">
-                        {{form.emergency_contact_othernum}}
-                    </div>
-                </div>
-            </div>
-            <!-- FORM END -->
-    </div>
-</div> 
-</div>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-gift"></i>Historia Medica</div>
-    </div>
-    <div class="portlet-body form" style="display: block;">
-        <!-- BEGIN FORM-->
-        <div class="form-horizontal">
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Doctor</label>
-                    <div class="col-md-4">
-                        {{form.doctor}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Antecedentes Personales</label>
-                    <div class="col-md-4">
-                        {{form.antecedentes_personales}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Antecedentes Familiares</label>
-                    <div class="col-md-4">
-                        {{form.antecedentes_familiares}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Historia Enfermedad Actual</label>
-                    <div class="col-md-4">
-                        {{form.enfermedad_actual}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Signos y Sintomas</label>
-                    <div class="col-md-4">
-                        {{form.signos_sintomas}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Diagnóstico de Rehabilitación</label>
-                    <div class="col-md-4">
-                        {{form.rehab_diagnosis}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Protocolo o Plan de Tratamiento</label>
-                    <div class="col-md-4">
-                        {{form.protocol_treatment}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Formulario llenado por</label>
-                    <div class="col-md-4">
-                        {{form.form_filled_by}}
-                    </div>
-                </div>
-            </div>
-            <div class="form-actions">
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-9">
-                        <button type="submit" class="btn btn-circle green">Registrar</button>
-                        <a href="{% url 'pacientes:list' %}" class="btn btn-circle grey-salsa btn-outline">Cancelar</a>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <a href="javascript:;" class="btn default button-previous">
+                                <i class="fa fa-angle-left"></i> Atras </a>
+                            <a href="javascript:;" class="btn btn-outline green button-next"> Continuar
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                            <button type="submit" class="btn green button-submit"><i class="fa fa-check"></i> {% if instance.full_name %}Editar Paciente{% else %}Agregar Paciente{% endif %}</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-</div> 
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/form-wizard.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/select2.full.min.js' %}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
 {% endblock %}
