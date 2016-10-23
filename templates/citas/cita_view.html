@@ -15,7 +15,7 @@
     <div class="tabbable-line tabbable-full-width">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#info-general" data-toggle="tab"> Información de Cita </a>
+                <a href="#info-general" data-toggle="tab"> Información de Terapia </a>
             </li>
         </ul>
         <div class="tab-content">
@@ -25,9 +25,9 @@
                         <ul class="list-unstyled profile-nav">
                             <li><a data-toggle="modal" href="#new_comment"> Añadir Comentario <span> 
                             <i class="fa fa-plus"></i> </span></a></li>
-                            <li><a href="{% url 'citas:edit' id=instance.id %}"> Editar Cita <span style="background-color: #68e268;"> 
+                            <li><a href="{% url 'citas:edit' id=instance.id %}"> Editar Terapia <span style="background-color: #68e268;"> 
                             <i class="fa fa-pencil"></i> </span></a></li>
-                            <li><a data-toggle="modal" href="#delete"> Eliminar Cita  <span style="background-color: #f95d5d;"> 
+                            <li><a data-toggle="modal" href="#delete"> Eliminar Terapia <span style="background-color: #f95d5d;"> 
                             <i class="fa fa-times"></i> </span></a></li>
                         </ul>
                     </div>
@@ -43,6 +43,10 @@
                                                     <td></td>
                                                 </tr>
                                                 <tr>
+                                                    <td> Fecha </td>
+                                                    <td> {{instance.timestamp}} </td>
+                                                </tr>
+                                                <tr>
                                                     <td> Nombre Paciente </td>
                                                     <td> {{instance.paciente}} </td>
                                                 </tr>
@@ -55,12 +59,12 @@
                                                     <td> {{instance.insurance}} </td>
                                                 </tr>
                                                 <tr>
-                                                    <td> Observaciones </td>
-                                                    <td> {{instance.observaciones}} </td>
-                                                </tr>
-                                                <tr>
                                                     <td> Diagnóstico </td>
                                                     <td> {{instance.diagnosis}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Terapia </td>
+                                                    <td> {{instance.observaciones}} </td>
                                                 </tr>
                                             </tbody>
                                         </table>

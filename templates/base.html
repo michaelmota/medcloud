@@ -55,7 +55,7 @@
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
                         <li class="nav-item start {% block dashboard %}{% endblock %}">
-                            <a href="#" class="nav-link nav-toggle">
+                            <a href="{% url 'dashboard' %}" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Escritorio</span>
                                 <span class="arrow"></span>
@@ -67,7 +67,7 @@
                         <li class="nav-item {% block citas %}{% endblock %}">
                             <a href="{% url 'citas:list' %}" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
-                                <span class="title">Citas</span>
+                                <span class="title">Terapias</span>
                                 <span class="arrow"></span>
                             </a>
                         </li>
