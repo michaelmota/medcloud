@@ -15,7 +15,7 @@ insurancechoice = (
 doctorchoice = (
 	('','-- Seleccionar --'),
 	('Raul Rodriguez', 'Raul Rodriguez'),
-	('El Viejo', 'El Viejo'),
+	('Dr. Vasquez', 'Dr. Vasquez'),
 )
 
 objetivochoice = (

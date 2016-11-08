@@ -16,7 +16,7 @@ from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter,ModelC
 
 # START VIEWS
 class CitaFilter(FilterSet):
-	paciente__patient = CharFilter(lookup_expr='icontains', distinct=True)
+	paciente__patient = CharFilter(name='paciente', lookup_type='icontains', distinct=True)
 
 	class Meta:
 		model = Cita
@@ -85,8 +85,23 @@ def view_cita(request, id=None):
 	}
 	return render(request, "cita_view.html", context)
 
-def edit_cita(request):
+def edit_cita(request, id=None):
+	instance = get_object_or_404(Cita, id=id)
+	form = CitaCreateForm(request.POST or None, instance=instance)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		messages.success(request, "Se ha actualizado la terapia")
+		return HttpResponseRedirect(instance.get_absolute_url())
+
+	context = {
+		"instance":instance,
+		"form":form,
+	}
 	return render(request, "cita_form.html", context)
 
-def delete_cita(request):
+def delete_cita(request, id=None):
+	instance = get_object_or_404(Cita, id=id)
+	instance.delete()
+	messages.success(request, "La Terapia %s se ha eliminado correctamente." %(instance.id))
 	return redirect("citas:list")

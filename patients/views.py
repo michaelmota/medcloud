@@ -113,5 +113,8 @@ def edit_patient(request, id=None):
 	}
 	return render(request, "paciente_form.html", context)
 
-def delete_patient(request):
+def delete_patient(request, id=None):
+	instance = get_object_or_404(Patient, id=id)
+	instance.delete()
+	messages.success(request, "El paciente %s se ha eliminado correctamente." %(instance.id))
 	return redirect("patients:list")

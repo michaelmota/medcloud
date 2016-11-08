@@ -19,10 +19,10 @@
             </li>
             <li>
                 <a href="#historia_clinica" data-toggle="tab"> Historia Clinica </a>
-            </li>
+            </li><!-- 
             <li>
                 <a href="{% url 'citas:view' id=instance.id %}"> Record de Citas </a>
-            </li>
+            </li> -->
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="info-general">
@@ -38,7 +38,7 @@
                             </li>
                             <li><a href="{% url 'citas:list' %}#nuevo"> Nueva Cita <span> 
                             <i class="fa fa-plus"></i> </span></a></li>
-                            <li><a href="{% url 'citas:list' %}"> Ver todas las citas <span style="background-color: #F1C40F;"><i class="fa fa-calendar-check-o"></i> </span></a></li>
+                            <!-- <li><a href="{% url 'citas:list' %}"> Ver todas las citas <span style="background-color: #F1C40F;"><i class="fa fa-calendar-check-o"></i> </span></a></li> -->
                             <li><a href="{% url 'pacientes:edit' id=instance.id %}"> Editar Paciente <span style="background-color: #68e268;"> 
                             <i class="fa fa-pencil"></i> </span></a></li>
                             <li><a data-toggle="modal" href="#delete"> Eliminar Paciente  <span style="background-color: #f95d5d;"> 
@@ -159,7 +159,7 @@
                             </li>
                             <li><a data-toggle="modal" href="#new_comment"> Nueva Cita <span> 
                             <i class="fa fa-plus"></i> </span></a></li>
-                            <li><a data-toggle="tab" href="#record_citas"> Ver todas las citas <span style="background-color: #F1C40F;"><i class="fa fa-calendar-check-o"></i> </span></a></li>
+                            <!-- <li><a data-toggle="tab" href="#record_citas"> Ver todas las citas <span style="background-color: #F1C40F;"><i class="fa fa-calendar-check-o"></i> </span></a></li> -->
                             <li><a href="{% url 'pacientes:edit' id=instance.id %}"> Editar Paciente <span style="background-color: #68e268;"> 
                             <i class="fa fa-pencil"></i> </span></a></li>
                             <li><a data-toggle="modal" href="#delete"> Eliminar Paciente  <span style="background-color: #f95d5d;"> 
