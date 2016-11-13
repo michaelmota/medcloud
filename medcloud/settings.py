@@ -69,6 +69,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, "templates", "includes"),
             os.path.join(BASE_DIR, "templates", "citas"),
             os.path.join(BASE_DIR, "templates", "widgets"),
+            os.path.join(BASE_DIR, "templates", "core"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

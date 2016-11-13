@@ -34,6 +34,7 @@ class PatientFilter(FilterSet):
 			"doctor",
 		]
 
+@login_required
 def list_patient(request):
 	pacientes = Patient.objects.all()
 	# FILTER
@@ -58,6 +59,7 @@ def list_patient(request):
 	}
 	return render(request, "paciente_list.html", context)
 
+@login_required
 def new_patient(request):
 	form = PatientCreateForm(request.POST or None)
 	if form.is_valid():
@@ -70,6 +72,7 @@ def new_patient(request):
 	}
 	return render(request, "paciente_form.html", context)
 
+@login_required
 def view_patient(request, id=None):
 	instance = get_object_or_404(Patient, id=id)
 	# COMMENT FORM
@@ -99,6 +102,7 @@ def view_patient(request, id=None):
 	}
 	return render(request, "paciente_view.html", context)
 
+@login_required
 def edit_patient(request, id=None):
 	instance = get_object_or_404(Patient, id=id)
 	form = PatientCreateForm(request.POST or None, instance=instance)
@@ -113,6 +117,7 @@ def edit_patient(request, id=None):
 	}
 	return render(request, "paciente_form.html", context)
 
+@login_required
 def delete_patient(request, id=None):
 	instance = get_object_or_404(Patient, id=id)
 	instance.delete()

@@ -37,7 +37,7 @@ class Patient(models.Model):
 	signos_sintomas			= models.TextField(max_length=500,null=True,blank=True)
 	rehab_diagnosis			= models.CharField(max_length=500,null=True,blank=True)
 	protocol_treatment		= models.CharField(max_length=500,null=True,blank=True)
-	form_filled_by 		= models.CharField(max_length=45, blank=True,null=True)
+	form_filled_by 			= models.CharField(max_length=45, blank=True,null=True)
 	# faltante
 	date 				= models.DateField(blank=True,null=True)
 	timestamp 			= models.DateField(auto_now_add=True,auto_now=False)

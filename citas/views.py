@@ -24,6 +24,7 @@ class CitaFilter(FilterSet):
 			"paciente__patient",
 		]
 
+@login_required
 def list_cita(request):
 	citas = Cita.objects.all()
 	filterform = CitaFilterForm(data=request.GET or None)
@@ -56,6 +57,7 @@ def list_cita(request):
 
 	return render(request, "cita_list.html", context)
 
+@login_required
 def view_cita(request, id=None):
 	instance = get_object_or_404(Cita, id=id)
 	# COMMENT FORM
@@ -74,7 +76,6 @@ def view_cita(request, id=None):
 						usuario=request.user,
 						content_type=content_type,
 						object_id=obj_id,
-						objetivo=objetivo,
 						content=content)
 	comments = instance.comments
 	# END COMMENT FORM
@@ -85,6 +86,7 @@ def view_cita(request, id=None):
 	}
 	return render(request, "cita_view.html", context)
 
+@login_required
 def edit_cita(request, id=None):
 	instance = get_object_or_404(Cita, id=id)
 	form = CitaCreateForm(request.POST or None, instance=instance)
@@ -100,6 +102,7 @@ def edit_cita(request, id=None):
 	}
 	return render(request, "cita_form.html", context)
 
+@login_required
 def delete_cita(request, id=None):
 	instance = get_object_or_404(Cita, id=id)
 	instance.delete()

@@ -19,7 +19,7 @@ class Comment(models.Model):
 	content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
 	object_id = models.PositiveIntegerField()
 	content_object = GenericForeignKey('content_type', 'object_id')
-	objetivo = models.CharField(max_length=40, choices=objetivochoice, blank=True,null=True)
+	#objetivo = models.CharField(max_length=40, choices=objetivochoice, blank=True,null=True)
 	content = models.TextField(max_length=500)
 	timestamp = models.DateField(auto_now_add=True,auto_now=False)
 
