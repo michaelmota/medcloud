@@ -18,7 +18,7 @@
                 <a href="#info-general" data-toggle="tab"> Información General </a>
             </li>
             <li>
-                <a href="#historia_clinica" data-toggle="tab"> Historia Clinica </a>
+                <a href="{% url 'records:list' %}"> Historia Clinica </a>
             </li><!-- 
             <li>
                 <a href="{% url 'citas:view' id=instance.id %}"> Record de Citas </a>
@@ -189,13 +189,13 @@
                                         </table>
                                         <hr/>
                                         <h4>Antecedentes Personales</h4>
-                                        <p>{{instance.antecedentes_personales}}</p>
+                                        <p>{{instance2.antecedentes_personales}}</p>
                                         <hr/>
                                         <h4>Antecedentes Familiares</h4>
-                                        <p>{{instance.antecedentes_familiares}}</p>
+                                        <p>{{instance2.antecedentes_familiares}}</p>
                                         <hr/>
                                         <h4>Historia Enfermedad Actual</h4>
-                                        <p>{{instance.enfermedad_actual}}</p>
+                                        <p>{{instance2.enfermedad_actual}}</p>
                                         <hr/>
                                         <h4>Signos y Sintomas</h4>
                                         <p>{{instance.signos_sintomas}}</p>

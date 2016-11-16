@@ -16,31 +16,21 @@ class Patient(models.Model):
 	insurancecompany 	= models.CharField(max_length=35, choices=insurancechoice)
 	# INFORMACION DE CONTACTO
 	address				= models.CharField(max_length=500)
-	phone				= models.IntegerField()
-	cellphone			= models.IntegerField()
-	other_phone			= models.IntegerField()
+	phone				= models.CharField(max_length=45)
+	cellphone			= models.CharField(max_length=45,null=True,blank=True)
+	other_phone			= models.CharField(max_length=45,null=True,blank=True)
 	# INFORMACION LABORAL
-	occupation			= models.CharField(max_length=45)
-	placeofwork			= models.CharField(max_length=45)
-	position			= models.CharField(max_length=45)
-	work_phone			= models.IntegerField()
+	occupation			= models.CharField(max_length=45,null=True,blank=True)
+	placeofwork			= models.CharField(max_length=45,null=True,blank=True)
+	position			= models.CharField(max_length=45,null=True,blank=True)
+	work_phone			= models.CharField(max_length=45,null=True,blank=True)
 	# CONTACTO DE EMERGENCIA
-	in_case_of_emergency_contact 	= models.CharField(max_length=45)
-	emergency_contact_phone 		= models.IntegerField()
-	emergency_contact_cellphone 	= models.IntegerField()
-	emergency_contact_othernum 		= models.IntegerField()
-	# HISTORIA MEDICA
-	doctor 					= models.CharField(max_length=45, choices=doctorchoice)
-	antecedentes_personales	= models.TextField(max_length=500,null=True,blank=True)
-	antecedentes_familiares = models.TextField(max_length=500,null=True,blank=True)
-	enfermedad_actual		= models.TextField(max_length=500,null=True,blank=True)
-	signos_sintomas			= models.TextField(max_length=500,null=True,blank=True)
-	rehab_diagnosis			= models.CharField(max_length=500,null=True,blank=True)
-	protocol_treatment		= models.CharField(max_length=500,null=True,blank=True)
-	form_filled_by 			= models.CharField(max_length=45, blank=True,null=True)
-	# faltante
-	date 				= models.DateField(blank=True,null=True)
-	timestamp 			= models.DateField(auto_now_add=True,auto_now=False)
+	in_case_of_emergency_contact 	= models.CharField(max_length=45,null=True,blank=True)
+	emergency_contact_phone 		= models.CharField(max_length=45,null=True,blank=True)
+	emergency_contact_cellphone 	= models.CharField(max_length=45,null=True,blank=True)
+	emergency_contact_othernum 		= models.CharField(max_length=45,null=True,blank=True)
+	date 							= models.DateField(blank=True,null=True)
+	timestamp 						= models.DateField(auto_now_add=True,auto_now=False)
 
 	def __unicode__(self):
 		return self.full_name

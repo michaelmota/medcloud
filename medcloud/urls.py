@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^citas/',include("citas.urls", namespace='citas')),
     url(r'^pacientes/',include("patients.urls", namespace='pacientes')),
+    url(r'^records/',include("records.urls", namespace='records')),
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
 ]

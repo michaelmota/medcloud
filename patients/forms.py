@@ -36,14 +36,6 @@ class PatientCreateForm(forms.ModelForm):
 			"emergency_contact_phone",
 			"emergency_contact_cellphone",
 			"emergency_contact_othernum",
-			"form_filled_by",
-			"doctor",
-			"antecedentes_personales",
-			"antecedentes_familiares",
-			"enfermedad_actual",
-			"signos_sintomas",
-			"rehab_diagnosis",
-			"protocol_treatment",
 		]
 		widgets = {
 			"date": 		forms.TextInput(attrs={'class': 'form-control input-circle'}),
@@ -51,7 +43,7 @@ class PatientCreateForm(forms.ModelForm):
 			"id_card_number": forms.TextInput(attrs={'class': 'form-control input-circle', 'placeholder': 'Ej. 001-1111111-2'}),
 			"sex": 			forms.Select(attrs={'class': 'form-control input-circle'}),
 			"age": 			forms.TextInput(attrs={'class': 'form-control input-circle'}),
-			"birthdate": 	forms.TextInput(attrs={'class': 'form-control input-circle'}),
+			"birthdate": 	forms.TextInput(attrs={'class': 'form-control input-circle', 'placeholder': 'Ej. 1994-05-31 (AAAA-MM-DD)'}),
 			"address": 		forms.TextInput(attrs={'class': 'form-control input-circle'}),
 			"phone":		forms.TextInput(attrs={'class': 'form-control input-circle'}),
 			"cellphone":	forms.TextInput(attrs={'class': 'form-control input-circle'}),

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'patients',
     'comments',
     'citas',
+    'records',
     # 3RDPARTY
     'django_filters',
     'crispy_forms',
@@ -70,6 +71,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, "templates", "citas"),
             os.path.join(BASE_DIR, "templates", "widgets"),
             os.path.join(BASE_DIR, "templates", "core"),
+            os.path.join(BASE_DIR, "templates", "records"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% block records %}active{% endblock %}
 {% block content %}
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i>Editar Terapia de {{instance.paciente}} </div>
+            <i class="fa fa-gift"></i>Historial Medico - {{instance.paciente}}</div>
         <div class="tools">
             <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
             <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
@@ -18,41 +19,52 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Paciente</label>
                     <div class="col-md-4">
-                        {{form.antecedentes_personales}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Fecha</label>
-                    <div class="col-md-4">
-                        {{form.antecedentes_familiares}}
-                        <span class="help-block"> AAAA-MM-DD (Año-Mes-Dia) </span>
+                        {{form.paciente}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Doctor</label>
                     <div class="col-md-4">
+                        {{form.doctor}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Antecedentes Personales</label>
+                    <div class="col-md-4">
+                        {{form.antecedentes_personales}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Antecedentes Familiares</label>
+                    <div class="col-md-4">
+                        {{form.antecedentes_familiares}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Historia Enfermedad Actual</label>
+                    <div class="col-md-4">
                         {{form.enfermedad_actual}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Aseguradora</label>
+                    <label class="col-md-3 control-label">Signos y Sintomas</label>
                     <div class="col-md-4">
                         {{form.signos_sintomas}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Fisioterapia</label>
+                    <label class="col-md-3 control-label">Diagnóstico de Rehabilitación</label>
                     <div class="col-md-4">
                         {{form.rehab_diagnosis}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Diagnostico</label>
+                    <label class="col-md-3 control-label">Protocolo o Plan de Tratamiento</label>
                     <div class="col-md-4">
                         {{form.protocol_treatment}}</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Diagnostico</label>
+                    <label class="col-md-3 control-label">Formulario llenado por</label>
                     <div class="col-md-4">
                         {{form.form_filled_by}}</div>
                 </div>
@@ -60,8 +72,12 @@
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
-                        <button type="submit" class="btn green button-submit"><i class="fa fa-check"></i> {% if instance.full_name %}Editar Paciente{% else %}Agregar Paciente{% endif %}</button>
-                        <button type="button" class="btn btn-circle grey-salsa btn-outline">Cancel</button>
+                        <button type="submit" class="btn green button-submit"><i class="fa fa-check"></i> Listo</button>
+                        {% if instance.paciente %}
+                        <a href="{% url 'records:view' id=instance.id %}" class="btn btn-circle grey-salsa btn-outline">Cancel</a>
+                        {% else %}
+                        <a href="{% url 'records:list' %}" class="btn btn-circle grey-salsa btn-outline">Cancel</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

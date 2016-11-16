@@ -78,6 +78,13 @@
                                 <span class="arrow"></span>
                             </a>
                         </li>
+                        <li class="nav-item {% block records %}{% endblock %}">
+                            <a href="{% url 'records:list' %}" class="nav-link nav-toggle">
+                                <i class="icon-user"></i>
+                                <span class="title">Historias Clinicas</span>
+                                <span class="arrow"></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

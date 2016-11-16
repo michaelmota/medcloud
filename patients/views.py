@@ -11,6 +11,7 @@ from .constants import insurancechoice,doctorchoice
 from .forms import PatientFilterForm, PatientCreateForm
 from comments.forms import CommentForm
 from comments.models import Comment
+from records.models import Record
 #3RDPARTY
 from django_filters import FilterSet,CharFilter,NumberFilter,ChoiceFilter
 
