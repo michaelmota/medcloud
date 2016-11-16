@@ -18,44 +18,49 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Paciente</label>
                     <div class="col-md-4">
-                        {{form.paciente}}
+                        {{form.antecedentes_personales}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Fecha</label>
                     <div class="col-md-4">
-                        {{form.date}}
+                        {{form.antecedentes_familiares}}
                         <span class="help-block"> AAAA-MM-DD (Año-Mes-Dia) </span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Doctor</label>
                     <div class="col-md-4">
-                        {{form.doctor}}
+                        {{form.enfermedad_actual}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Aseguradora</label>
                     <div class="col-md-4">
-                        {{form.insurance}}
+                        {{form.signos_sintomas}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Fisioterapia</label>
                     <div class="col-md-4">
-                        {{form.observaciones}}
+                        {{form.rehab_diagnosis}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Diagnostico</label>
                     <div class="col-md-4">
-                        {{form.diagnosis}}</div>
+                        {{form.protocol_treatment}}</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Diagnostico</label>
+                    <div class="col-md-4">
+                        {{form.form_filled_by}}</div>
                 </div>
             </div>
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
-                        <button type="submit" class="btn green button-submit"><i class="fa fa-check"></i> Editar Terapia</button>
+                        <button type="submit" class="btn green button-submit"><i class="fa fa-check"></i> {% if instance.full_name %}Editar Paciente{% else %}Agregar Paciente{% endif %}</button>
                         <button type="button" class="btn btn-circle grey-salsa btn-outline">Cancel</button>
                     </div>
                 </div>
