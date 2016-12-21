@@ -10,6 +10,7 @@ insurancechoice = (
 	('Universal','Universal'),
 	('SeNaSa','SeNaSa'),
 	('Seguros Banreservas','Seguros Banreservas'),
+	('Privado','Privado'),
 )
 
 doctorchoice = (

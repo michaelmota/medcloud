@@ -8,9 +8,13 @@ from django.contrib.auth import logout
 from django.conf import settings
 
 from .forms import UserLoginForm
+from citas.models import Cita
+from patients.models import Patient
+from records.models import Record
 
 def login_view(request):
 	form = UserLoginForm(request.POST or None)
+
 	if form.is_valid():
 		username = form.cleaned_data.get("username")
 		password = form.cleaned_data.get("password")
@@ -26,8 +30,14 @@ def login_view(request):
 
 @login_required
 def dashboard(request):
-	context = {
+	citas_count = Cita.objects.count()
+	patients_count = Patient.objects.count()
+	records_count = Record.objects.count()
 
+	context = {
+		'citas_count':citas_count,
+		'patients_count':patients_count,
+		'records_count':records_count,
 	}
 
 	return render(request, "dashboard.html", context)
