@@ -14,8 +14,8 @@ class Cita(models.Model):
 	doctor = models.CharField(max_length=30, choices=doctorchoice)
 	insurance = models.CharField(max_length=40, choices=insurancechoice)
 	# DATOS DE LA CITA
-	observaciones = models.CharField(max_length=500)
-	diagnosis = models.TextField(max_length=500)
+	observaciones = models.CharField(max_length=5000)
+	diagnosis = models.TextField(max_length=5000)
 	# CREATED
 	timestamp = models.DateField(auto_now_add=True,auto_now=False)
 
