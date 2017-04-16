@@ -65,5 +65,4 @@ class PatientCreateForm(forms.ModelForm):
 			"enfermedad_actual":			forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
 			"signos_sintomas": 				forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
 			"rehab_diagnosis": 				forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
-			"protocol_treatment": 			forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
 		}

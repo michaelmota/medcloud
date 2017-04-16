@@ -17,7 +17,8 @@ class RecordsCreateForm(forms.ModelForm):
 			"enfermedad_actual",
 			"signos_sintomas",
 			"rehab_diagnosis",
-			"protocol_treatment",
+			"meta_corto_plazo",
+			"meta_largo_plazo",
 			"form_filled_by",
 			"doctor",
 		]
@@ -29,6 +30,7 @@ class RecordsCreateForm(forms.ModelForm):
 			"enfermedad_actual":			forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
 			"signos_sintomas": 				forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
 			"rehab_diagnosis": 				forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
-			"protocol_treatment": 			forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+			"meta_corto_plazo": 			forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+			"meta_largo_plazo": 			forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
 			"form_filled_by": 				forms.TextInput(attrs={'class': 'form-control'}),
 		}

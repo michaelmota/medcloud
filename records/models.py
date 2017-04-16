@@ -14,7 +14,8 @@ class Record(models.Model):
 	enfermedad_actual		= models.TextField(max_length=500,null=True,blank=True)
 	signos_sintomas			= models.TextField(max_length=500,null=True,blank=True)
 	rehab_diagnosis			= models.TextField(max_length=500,null=True,blank=True)
-	protocol_treatment		= models.TextField(max_length=500,null=True,blank=True)
+	meta_corto_plazo		= models.TextField(max_length=500,null=True,blank=True)
+	meta_largo_plazo		= models.TextField(max_length=500,null=True,blank=True)
 	form_filled_by 			= models.TextField(max_length=45, blank=True,null=True)
 	timestamp 				= models.DateField(auto_now_add=True,auto_now=False)
 
